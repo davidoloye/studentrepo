@@ -1,0 +1,228 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Employee Manager</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link"  (click)="onOpenModal(null,'add')" href="#">Add Employee <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div>&nbsp;</div>
+
+
+<div class="container" id="maincontainer">
+    <div class="row">
+        <div  *ngFor="let employee of employees" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <!-- <a href=""><img src="{{employee?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a> -->
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>{{employee.Name}}</h5>
+                        <p class="m-0">{{employee.CourseOfStudy}}</p>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email:{{employee.Bio}}</li>
+                    <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone: {{employee.City}}</li>
+                </ul>
+                <div class="card-body ">
+                  <!-- <ul class="social-links">
+                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+                  </ul> -->
+                    <div class="ml-2 btn-group btn-group-sm">
+                        <a  (click)="onOpenModal(employee,'edit')"   href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a  (click)="onOpenModal(employee,'delete')"  href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-xl-12">
+  <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">No Employees</h4>
+      <p>none were found</p>
+  </div>
+</div>
+
+<!-- Add Employee -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="" #addForm="ngForm" (ngSubmit)="onAddEmployee(addForm)">
+      <div class="modal-body">
+        <div class="form-floating mb-2">
+          <input type="email" ngModel name="id" class="form-control" id="floatingInput" placeholder="id">
+          <label for="floatingInput">Id</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="email" ngModel name="Name" class="form-control" id="Name" placeholder="Name">
+          <label for="floatingInput">Name</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="Gender"  class="form-control" id="Gender" placeholder="Gender">
+          <label for="floatingPassword">Gender</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="DateOfBirth"  class="form-control" id="DateOfBirth" placeholder="DateOfBirth">
+          <label for="floatingPassword">DateOfBirth</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="CourseOfStudy" class="form-control" id="CourseOfStudy" placeholder="CourseOfStudy">
+          <label for="floatingPassword">CourseOfStudy</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="Degree" class="form-control" id="Degree" placeholder="Degree">
+          <label for="floatingPassword">Degree</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="Faculty" class="form-control" id="Faculty" placeholder="Faculty">
+          <label for="floatingPassword">Faculty</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="Department" class="form-control" id="Department" placeholder="Department">
+          <label for="floatingPassword">Department</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="Bio" class="form-control" id="Bio" placeholder="Bio">
+          <label for="floatingPassword">Bio</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="City" class="form-control" id="City" placeholder="City">
+          <label for="floatingPassword">City</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="Country" class="form-control" id="Country" placeholder="Country">
+          <label for="floatingPassword">Country</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel name="DateCreated" class="form-control" id="DateCreated" placeholder="DateCreated">
+          <label for="floatingPassword">DateCreated</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="addemployeeform" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Add Employee</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Update Employee -->
+<div class="modal fade" id="updateEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Employee {{editEmployee?.Name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form #editForm ="ngForm">
+      <div class="modal-body">
+        <div class="form-floating mb-2">
+          <input type="email" ngModel="{{editEmployee?.Id}}" name="Id" class="form-control" id="Id" placeholder="Id">
+          <label for="floatingInput">Id</label>
+        </div>
+        <!-- <input type="hidden" ngModel="{{editEmployee?.id}}" name="id" class="form-control" id="id" placeholder="id">
+        <input type="hidden" ngModel="{{editEmployee?.employeeCode}}" name="employeeCode" class="form-control" id="employeecode" placeholder="employeecode"> -->
+
+        <div class="form-floating mb-2">
+          <input type="email" ngModel="{{editEmployee?.Name}}" name="Name" class="form-control" id="Name" placeholder="Name">
+          <label for="floatingPassword">Name</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="email" ngModel="{{editEmployee?.Gender}}" name="Gender" class="form-control" id="Gender" placeholder="Gender">
+          <label for="floatingPassword">Gender</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.DateOfBirth}}" name="DateOfBirth" class="form-control" id="DateOfBirth" placeholder="DateOfBirth">
+          <label for="floatingPassword">DateOfBirth</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.CourseOfStudy}}" name="CourseOfStudy" class="form-control" id="CourseOfStudy" placeholder="CourseOfStudy">
+          <label for="floatingPassword">CourseOfStudy</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.Degree}}" name="Degree" class="form-control" id="Degree" placeholder="Degree">
+          <label for="floatingPassword">Degree</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.Faculty}}" name="Faculty" class="form-control" id="Faculty" placeholder="Faculty">
+          <label for="floatingPassword">Faculty</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.Department}}" name="Department" class="form-control" id="Department" placeholder="Department">
+          <label for="floatingPassword">Department</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.Bio}}" name="Bio" class="form-control" id="Bio" placeholder="Bio">
+          <label for="floatingPassword">Bio</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.City}}" name="City" class="form-control" id="City" placeholder="City">
+          <label for="floatingPassword">City</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.Country}}" name="Country" class="form-control" id="Country" placeholder="Country">
+          <label for="floatingPassword">Country</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" ngModel="{{editEmployee?.DateCreated}}" name="DateCreated" class="form-control" id="DateCreated" placeholder="DateCreated">
+          <label for="floatingPassword">DateCreated</label>
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" id="updateemployeeform" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="onUpdateEmployee(editForm.value)" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </form>
+  </div>
+  </div>
+</div>
+
+<!-- Delete Employee -->
+<div class="modal fade" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="form-floating mb-3">
+            <p>Are you sure you want to delete Employee {{deleteEmployee.Name}}?</p>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="deleteemployeeform" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="onDeleteEmployee(deleteEmployee.Id)" class="btn btn-danger">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

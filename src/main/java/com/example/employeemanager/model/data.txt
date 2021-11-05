@@ -1,0 +1,28 @@
+{
+    "email":"tomioloye@gmail.com",
+    "imageUrl":"https://bootdey.com/img/Content/avatar/avatar1.png",
+    "jobTitle":"Javascript",
+    "name":"tomi",
+    "phone":"09030181464"
+}
+{
+    "email":"davidoloye20@gmail.com",
+    "imageUrl":"https://bootdey.com/img/Content/avatar/avatar2.png",
+    "jobTitle":"ReactJs",
+    "name":"chloe",
+    "phone":"08028323429"
+}
+{
+    "email":"gbengadavid1995@gmail.com",
+    "imageUrl":"https://bootdey.com/img/Content/avatar/avatar3.png",
+    "jobTitle":"Node",
+    "name":"pasta",
+    "phone":"07061043053"
+}
+{
+    "email":"chloe.pasta@gmail.com",
+    "imageUrl":"https://bootdey.com/img/Content/avatar/avatar4.png",
+    "jobTitle":"Python",
+    "name":"Meche",
+    "phone":"08105743384"
+}
